@@ -3,10 +3,10 @@ name: Cypress Tests
 on:
   push:
     branches:
-      - main  # Adjust branch name as needed
+      - main
   pull_request:
     branches:
-      - main  # Adjust branch name as needed
+      - main
 
 jobs:
   cypress-tests:
@@ -16,8 +16,17 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       
-      - name: Install Dependencies
+      - name: Install Node.js and dependencies
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
         run: npm install
       
       - name: Run Cypress Tests
-        run: npm run cy:run  # Adjust this command based on your project's setup
+        run: npm run cy:run
+      
+      - name: Generate Allure Report
+        run: |
+          npm install -g allure-commandline
+          allure generate --clean && allure open
