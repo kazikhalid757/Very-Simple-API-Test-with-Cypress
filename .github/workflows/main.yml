@@ -1,0 +1,23 @@
+name: Cypress Tests
+
+on:
+  push:
+    branches:
+      - main  # Adjust branch name as needed
+  pull_request:
+    branches:
+      - main  # Adjust branch name as needed
+
+jobs:
+  cypress-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Install Dependencies
+        run: npm install
+      
+      - name: Run Cypress Tests
+        run: npm run cy:run  # Adjust this command based on your project's setup
