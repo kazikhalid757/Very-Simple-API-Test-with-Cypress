@@ -1,1 +1,1 @@
-# API_test_cypress_reqres
+# API test with cypress
