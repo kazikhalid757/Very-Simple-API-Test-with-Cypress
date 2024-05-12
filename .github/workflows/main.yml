@@ -20,6 +20,7 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
+          
       - name: Install dependencies
         run: npm install
       
@@ -29,4 +30,10 @@ jobs:
       - name: Generate Allure Report
         run: |
           npm install -g allure-commandline
-          allure generate --clean && allure open
+          allure generate --clean
+      
+      - name: Upload Allure Report Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: allure-report
+          path: allure-report
